@@ -27,13 +27,29 @@ public class MyAccountPage extends SeleniumWrappers{
 	@FindBy(css="div[class='woocommerce-MyAccount-content']")
 	public WebElement greetingsMessage;
 
+	@FindBy(id="dgwt-wcas-search-input-1")
+	public WebElement searchForInput;
 
+	@FindBy(css="span[class='dgwt-wcas-st-title']")
+	public WebElement foundProduct;
+	
+	@FindBy(css="i[class='klbth-icon-shopping-bag']") 
+	public WebElement shoppingBag;
+	
 	public void loginInApp(String user, String pass) {
 		sendKeys(usernameField, user);
 		sendKeys(passwordField, pass);
 		click(signInButton);
 	}
+	public void searchForProducts(String product) {
+		sendKeys(searchForInput, product);
+		click(searchForInput);
+		waitForElementToBeVisible(foundProduct);
+		click(foundProduct);
+	}
 
-
-
+	public void openShoppingBag() {
+		waitForElementToBeVisible(shoppingBag);
+		click(shoppingBag);
+	}
 }
