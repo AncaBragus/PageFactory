@@ -26,6 +26,9 @@ public class MyAccountPage extends SeleniumWrappers{
 
 	@FindBy(css="div[class='woocommerce-MyAccount-content']")
 	public WebElement greetingsMessage;
+	
+	@FindBy(linkText = "Log out")
+	public WebElement logOutButton;
 
 	@FindBy(id="dgwt-wcas-search-input-1")
 	public WebElement searchForInput;
