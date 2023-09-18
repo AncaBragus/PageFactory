@@ -36,12 +36,16 @@ public class CheckoutPage extends SeleniumWrappers{
 		click(placeOrderButton);
 	}
 	
-	public void checkOrderMessage() {
+	public String getOrderMessage() {
 		waitForElementToBeVisible(orderMessage);
 		System.out.println(orderMessage.getText());
+		return orderMessage.getText();
+	}
+	
+	public String getOrderNumber() {
+		waitForElementToBeVisible(orderNumber);
 		System.out.println(orderNumber.getText());
-		assertTrue((orderMessage.getText()).contains("Thank you. Your order has been received."));
-		assertTrue((orderNumber.getText()).contains("Order number:"));
+		return orderNumber.getText();
 	}
 	
 }

@@ -50,7 +50,8 @@ public class PlaceOrderTest extends BaseTest {
 		order.placeOrder();
 		Thread.sleep(2000);
 		
-		order.checkOrderMessage();
+		assertTrue((order.getOrderMessage()).contains("Thank you. Your order has been received."));
+		assertTrue((order.getOrderNumber()).contains("Order number:"));
 		Thread.sleep(2000);
 	}
 	
