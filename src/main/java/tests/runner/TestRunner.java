@@ -1,4 +1,4 @@
-package utils;
+package tests.runner;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,33 +8,34 @@ import java.util.Date;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import java.time.Duration;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 
 import com.google.common.io.Files;
+
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 import pages.BasePage;
+import utils.Log;
 
-public class BaseTest extends Driver{
+@CucumberOptions(tags="",
+features="src/main/resources/features",
+glue="tests"
+)
 
+public class TestRunner extends AbstractTestNGCucumberTests{
 	public static WebDriver driver;
 	public BasePage app;
 
-	@Parameters({"browser"})
+	//@BeforeMethod()
 	@BeforeClass()
-	public void setup(String browser) {
-	//	System.setProperty("webdriver.chrome.driver", "path catre/chromedriver.exe")
-	//	System.setProperty("webdriver.edge.driver", "path catre/chromedriver.exe")
-	//	System.setProperty("webdriver.gecko.driver", "path catre/chromedriver.exe")
-		//driver = new ChromeDriver();
-		driver = initDriver(browser);
+	public void setup() {
+		//System.setProperty("webdriver.chrome.driver", "path catre/chromedriver.exe")
+		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();//maximizeaza fereastra browserului
 		driver.get("https://keyfood.ro/");
